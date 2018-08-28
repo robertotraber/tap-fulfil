@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import json
-from datetime import datetime
+from datetime import datetime, date
 import pytz
 import singer
 from singer import utils
@@ -45,7 +45,7 @@ DEFAULT_PROPERTIES = {
     },
     "id": {
         "type": ["integer"],
-    }
+    },
 }
 
 
@@ -59,6 +59,9 @@ def discover():
                 "metadata": {
                     "inclusion": "available",
                     "table-key-properties": ["id"],
+                    "replication-method": MODEL_REPLICATION_METHOD[
+                        STREAM_MODEL_MAP[schema_name]
+                    ],
                 },
                 "breadcrumb": []
             },
@@ -138,20 +141,28 @@ def sync(config, state, catalog):
 
 STREAM_MODEL_MAP = {
     'contacts': 'party.party',
+    'sales_orders': 'sale.sale',
+}
+MODEL_REPLICATION_METHOD = {
+    'party.party': 'FULL_TABLE',
+    'sale.sale': 'INCREMENTAL',
 }
 
 
-def sync_records(config, state, stream):
-    write_schema(
-        stream.tap_stream_id,
-        stream.schema.to_dict(),
-        stream.key_properties,
-    )
+def get_sync_domain(state, stream, model_name):
+    """
+    Return a domain (a filter expression) that can be used to filter
+    records.
 
-    client = Client(config['subdomain'], config['api_key'])
-    model = client.model(STREAM_MODEL_MAP[stream.tap_stream_id])
-
+    If the model's replication methd
+    """
     domain = []
+    for entry in stream.metadata:
+        # stream metadata will have empty breadcrumb
+        if not entry['breadcrumb'] and \
+                entry['metadata'].get('replication-method', None) == 'FULL_TABLE':
+            return domain
+
     last_updated_at = get_bookmark(
         state, stream.tap_stream_id, 'last_updated_at'
     )
@@ -169,7 +180,20 @@ def sync_records(config, state, stream):
         domain.append(
             ('id', '>', last_record_id)
         )
+    return domain
 
+
+def sync_records(config, state, stream):
+    write_schema(
+        stream.tap_stream_id,
+        stream.schema.to_dict(),
+        stream.key_properties,
+    )
+
+    client = Client(config['subdomain'], config['api_key'])
+    model_name = STREAM_MODEL_MAP[stream.tap_stream_id]
+    model = client.model(model_name)
+    domain = get_sync_domain(state, stream, model_name)
     sort_order = [
         ('write_date', 'asc'),
         ('create_date', 'asc'),
@@ -182,9 +206,10 @@ def sync_records(config, state, stream):
     # Add create and write date to keep track of state
     fields.extend(['id', 'create_date', 'write_date'])
     for record in model.search_read_all(domain, sort_order, fields):
+        transform(record)
         write_record(
             stream.tap_stream_id,
-            transform(record),
+            record,
             time_extracted=utils.now()
         )
         state = write_bookmark(
@@ -201,6 +226,7 @@ def sync_records(config, state, stream):
         )
         write_state(state)
 
+
 def transform(record_dict):
     """
     Transform complex objects into simpler objects for JSON serialization
@@ -210,6 +236,8 @@ def transform(record_dict):
             record_dict[key] = utils.strftime(
                 value.astimezone(pytz.utc)
             )
+        if isinstance(value, date):
+            record_dict[key] = value.isoformat()
     return record_dict
 
 
@@ -222,7 +250,7 @@ def main():
     # If discover flag was passed, run discovery mode and dump output to stdout
     if args.discover:
         catalog = discover()
-        print(catalog.dump())
+        catalog.dump()
     # Otherwise run in sync mode
     else:
 

@@ -5,37 +5,38 @@
   ],
   "additionalProperties": false,
   "properties": {
-    "name": {
+    "number": {
       "type": [
         "null",
         "string"
       ]
     },
-    "code": {
+    "reference": {
       "type": [
         "null",
         "string"
       ]
     },
-    "receivable": {
+    "sale_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "comment": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "tax_amount": {
       "type": [
         "null",
         "number"
       ]
     },
-    "receivable_today": {
-      "type": [
-        "null",
-        "number"
-      ]
-    },
-    "payable": {
-      "type": [
-        "null",
-        "number"
-      ]
-    },
-    "payable_today": {
+    "total_amount": {
       "type": [
         "null",
         "number"
@@ -43,3 +44,4 @@
     }
   }
 }
+
