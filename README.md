@@ -9,6 +9,7 @@ This tap:
 - Pulls raw data from [Fulfil](https://www.fulfil.io)
 - Extracts the following resources:
   - Contacts
+  - Sales Orders
 - Outputs the schema for each resource
 - Incrementally pulls data based on the input state
 
