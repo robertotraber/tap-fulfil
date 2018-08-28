@@ -1,0 +1,28 @@
+{
+  "type": [
+    "null",
+    "object"
+  ],
+  "model": "party.party",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "code": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "receivable": {
+      "type": [
+        "null",
+        "number"
+      ]
+    }
+  }
+}
