@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="tap-fulfil",
-    version="0.1.0",
+    version="0.1.1",
     description="Singer.io tap for extracting data",
     author="Fulfil.IO Inc.",
     url="https://www.fulfil.io",
@@ -19,7 +19,7 @@ setup(
     tap-fulfil=tap_fulfil:main
     """,
     packages=["tap_fulfil"],
-    package_data = {
+    package_data={
         "schemas": ["tap_fulfil/schemas/*.json"]
     },
     include_package_data=True,
