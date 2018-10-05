@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="tap-fulfil",
-    version="0.1.2",
+    version="0.1.3",
     description="Singer.io tap for extracting data",
     author="Fulfil.IO Inc.",
     url="https://www.fulfil.io",
