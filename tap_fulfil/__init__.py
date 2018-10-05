@@ -59,9 +59,6 @@ def discover():
                 "metadata": {
                     "inclusion": "available",
                     "table-key-properties": ["id"],
-                    "replication-method": MODEL_REPLICATION_METHOD[
-                        STREAM_MODEL_MAP[schema_name]
-                    ],
                     "forced-replication-method": MODEL_REPLICATION_METHOD[
                         STREAM_MODEL_MAP[schema_name]
                     ]
