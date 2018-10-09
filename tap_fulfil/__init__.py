@@ -254,11 +254,8 @@ def main():
     # Otherwise run in sync mode
     else:
 
-        # 'properties' is the legacy name of the catalog
-        if args.properties:
-            catalog = args.properties
         # 'catalog' is the current name
-        elif args.catalog:
+        if args.catalog:
             catalog = args.catalog
         else:
             catalog = discover()
