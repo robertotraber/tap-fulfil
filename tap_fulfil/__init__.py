@@ -236,7 +236,7 @@ def transform(record_dict):
             record_dict[key] = utils.strftime(
                 value.replace(tzinfo=pytz.UTC)
             )
-        if isinstance(value, date):
+        elif isinstance(value, date):
             record_dict[key] = value.isoformat()
     return record_dict
 
