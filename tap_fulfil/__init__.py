@@ -167,7 +167,7 @@ def get_sync_domain(state, stream, model_name):
         state, stream.tap_stream_id, 'last_updated_at'
     )
     if last_updated_at:
-        last_updated_at = utils.strptime(last_updated_at)
+        last_updated_at = utils.strptime_to_utc(last_updated_at)
         domain.extend([
             'OR',
             [('write_date', '>', last_updated_at)],
