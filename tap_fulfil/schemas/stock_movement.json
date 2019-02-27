@@ -1,0 +1,191 @@
+{
+  "type": [
+    "null",
+    "object"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "available_qty": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "company": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "create_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "create_uid": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "product": {
+      "id":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "name":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "quantity":{
+        "type": [
+          "null",
+          "number"
+        ]
+      },
+      "quantity_available":{
+        "type": [
+          "null",
+          "number"
+        ]
+      },
+      "quantity_inbound":{
+        "type": [
+          "null",
+          "number"
+        ]
+      },
+      "quantity_on_confirmed_purchase_orders":{
+        "type": [
+          "null",
+          "number"
+        ]
+      },
+      "quantity_on_hand":{
+        "type": [
+          "null",
+          "number"
+        ]
+      },
+      "quantity_outbound":{
+        "type": [
+          "null",
+          "number"
+        ]
+      }
+    },
+    "purchase": {
+      "id":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "number":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "description":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "comment":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "company":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "create_date":{
+        "type": [
+          "null",
+          "string"
+        ],
+        "format": "date"
+      }
+    },
+    "supplier":{
+      "id":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "name":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "full_name":{
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "email":{
+        "type": [
+          "null",
+          "string"
+        ]
+      }
+    },
+    "quantity":{
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "quantity_available":{
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "quantity_blurb":{
+      "type": [
+        "null",
+        "number"
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

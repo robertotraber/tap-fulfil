@@ -1,0 +1,58 @@
+{
+  "type": [
+    "null",
+    "object"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "create_date": {
+      "type": [
+        "null",
+        "number"
+      ],
+      "format": "date"
+    },
+    "description": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "number": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "state": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "total_quantity": {
+      "type": [
+        "null",
+        "number"
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
